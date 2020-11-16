@@ -65,7 +65,7 @@ public class TeacherRest {
         Teacher teacher = teacherService.findById(id);
         if (teacher != null) {
             teacherService.remove(id);
-            return Response.ok().entity("Teacher with ID " + id + "deleted").type(MediaType.TEXT_PLAIN).build();
+            return Response.ok().entity("Teacher with ID " + id + " was deleted").type(MediaType.TEXT_PLAIN).build();
         } else {
             throw new NotFoundException(); //TODO Replace with more relevant exception
         }

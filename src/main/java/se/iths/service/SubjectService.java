@@ -31,7 +31,7 @@ public class SubjectService {
         entityManager.remove(subject);
     }
 
-    public Subject replaceFields(Subject subject) {
+    public Subject update(Subject subject) {
         entityManager.merge(subject);
         entityManager.flush();
         return subject;
