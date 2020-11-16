@@ -1,14 +1,25 @@
 package se.iths.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
+@Entity
 public class Student {
 
 
+    @Id
     private Long id;
 
+    @NotEmpty(message = "first name must not be empty")
     private String firstName;
+    @NotEmpty(message = "last name must not be empty")
     private String lastname;
+    @Email(message = "invalid email address")
+    @NotEmpty(message = "email must not be empty")
     private String email;
+
     private String phoneNumber;
 
     public Long getId() {
