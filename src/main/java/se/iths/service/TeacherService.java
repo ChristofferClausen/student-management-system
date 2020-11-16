@@ -31,7 +31,7 @@ public class TeacherService {
         entityManager.remove(teacher);
     }
 
-    public Teacher replaceFields(Teacher teacher) {
+    public Teacher update(Teacher teacher) {
         entityManager.merge(teacher);
         entityManager.flush();
         return teacher;
