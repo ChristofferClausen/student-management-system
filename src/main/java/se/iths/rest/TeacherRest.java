@@ -45,11 +45,11 @@ public class TeacherRest {
 
     @PUT
     @Path("update")
-    public Response update(Teacher teacher) { //TODO Fix
+    public Response update(Teacher teacher) {
         try {
             Teacher foundTeacher = teacherService.findById(teacher.getId());
             if (foundTeacher != null) {
-                teacherService.update(foundTeacher);
+                teacherService.update(teacher);
                 return Response.ok(teacher).build();
             } else {
                 throw new NotFoundException(); //TODO Replace with more relevant exception
