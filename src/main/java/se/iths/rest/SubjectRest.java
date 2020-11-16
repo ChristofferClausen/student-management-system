@@ -38,7 +38,7 @@ public class SubjectRest {
     }
 
     @GET
-    @Path("getall")
+    @Path("all")
     public List<Subject> getAll() {
         return subjectService.getAll();
     }
