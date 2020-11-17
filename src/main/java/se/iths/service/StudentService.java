@@ -13,6 +13,7 @@ public class StudentService {
     @PersistenceContext
     EntityManager entityManager;
 
+    //<editor-fold desc="CRUD">
     public Student createStudent(Student student) {
         entityManager.persist(student);
         return student;
@@ -57,5 +58,6 @@ public class StudentService {
         entityManager.flush();
         return student;
     }
+    //</editor-fold>
 
 }

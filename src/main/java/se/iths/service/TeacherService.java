@@ -1,5 +1,6 @@
 package se.iths.service;
 
+import se.iths.entity.Subject;
 import se.iths.entity.Teacher;
 
 import javax.persistence.EntityManager;
@@ -13,7 +14,11 @@ public class TeacherService {
     @PersistenceContext
     EntityManager entityManager;
 
+    //<editor-fold desc="CRUD">
     public Teacher create(Teacher teacher) {
+        teacher.addSubjects(new Subject("Maths"));
+        teacher.addSubjects(new Subject("Science"));
+        teacher.addSubjects(new Subject("PE"));
         entityManager.persist(teacher);
         return teacher;
     }
@@ -36,5 +41,6 @@ public class TeacherService {
         entityManager.flush();
         return teacher;
     }
+    //</editor-fold>
 
 }

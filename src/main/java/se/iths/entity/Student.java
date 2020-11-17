@@ -2,6 +2,8 @@ package se.iths.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
@@ -19,8 +21,22 @@ public class Student {
     @Email(message = "invalid email address")
     @NotEmpty(message = "email must not be empty")
     private String email;
-
     private String phoneNumber;
+
+    @ManyToOne
+    @JoinColumn(name = "subject_student")
+    Subject subject;
+
+    public Student(long id, String firstName, String lastname, String email) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastname = lastname;
+        this.email = email;
+    }
+
+    public Student() {
+
+    }
 
     public Long getId() {
         return id;
