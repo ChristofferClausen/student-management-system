@@ -2,6 +2,7 @@ package se.iths.service;
 
 import se.iths.entity.Student;
 import se.iths.entity.Subject;
+import se.iths.entity.Teacher;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,10 +15,21 @@ public class SubjectService {
     @PersistenceContext
     EntityManager entityManager;
 
+
+
+    public Subject addTeacher(Long subejctId, Teacher teacher) {
+        var subject = entityManager.find(Subject.class, subejctId);
+//        var teacher = entityManager.find(Teacher.class, subejctId);
+        subject.setTeacher(teacher);
+        entityManager.merge(subject);
+        entityManager.flush();
+        return subject;
+    }
+
+
+
     //<editor-fold desc="CRUD">
     public Subject create(Subject subject) {
-        subject.addStudent(new Student(1,"John","Doe","john@doe.com"));
-        subject.addStudent(new Student(2,"Jane","Doe","jane@doe.com"));
         entityManager.persist(subject);
         return subject;
     }

@@ -13,8 +13,15 @@ public class Teacher {
     Long id;
     @NotEmpty
     String name;
-    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL, orphanRemoval = true) //TODO Change cascade type
+
+
+
+
+    @OneToMany(mappedBy = "teacher", cascade = CascadeType.PERSIST) //TODO Change cascade type
     private Set<Subject> subjects = new HashSet<Subject>();
+
+
+
 
     public Long getId() {
         return id;
@@ -36,7 +43,7 @@ public class Teacher {
         return subjects;
     }
 
-    public void addSubjects(Subject subject) {
+    public void addSubject(Subject subject) {
         this.subjects.add(subject);
     }
 }

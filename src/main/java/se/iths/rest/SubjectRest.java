@@ -1,6 +1,7 @@
 package se.iths.rest;
 
 import se.iths.entity.Subject;
+import se.iths.entity.Teacher;
 import se.iths.service.SubjectService;
 
 import javax.inject.Inject;
@@ -16,6 +17,18 @@ public class SubjectRest {
 
     @Inject
     SubjectService subjectService;
+
+
+
+    @POST
+    @Path("{subjectId}/add/teacher")
+    public Response setTeacher(@PathParam("subjectId")Long subjectId, Teacher teacher) {
+//        subjectService.addTeacher(subjectId,teacher);
+        return Response.ok(subjectService.addTeacher(subjectId,teacher)).build();
+    }
+
+
+
 
     @POST
     @Path("new")

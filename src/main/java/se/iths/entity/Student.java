@@ -1,9 +1,6 @@
 package se.iths.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
@@ -12,6 +9,7 @@ public class Student {
 
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotEmpty(message = "first name must not be empty")
@@ -23,9 +21,16 @@ public class Student {
     private String email;
     private String phoneNumber;
 
-    @ManyToOne
-    @JoinColumn(name = "subject_student")
-    Subject subject;
+
+
+
+//    @ManyToOne
+//    @JoinColumn(name = "subject_student")
+//    Subject subject;
+
+
+
+
 
     public Student(long id, String firstName, String lastname, String email) {
         this.id = id;
