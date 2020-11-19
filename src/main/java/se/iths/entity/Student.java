@@ -9,11 +9,9 @@ import java.util.Set;
 @Entity
 public class Student {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     @NotEmpty(message = "first name must not be empty")
     private String firstName;
     @NotEmpty(message = "last name must not be empty")
@@ -22,36 +20,11 @@ public class Student {
     @NotEmpty(message = "email must not be empty")
     private String email;
     private String phoneNumber;
-//    @ManyToOne
-//    @JoinColumn(name = "subject_student")
-//    Subject subject;
-
-
 
     @ManyToMany(mappedBy = "students", cascade = CascadeType.PERSIST)
     private Set<Subject> subjects = new HashSet<>();
 
-//    public void addSubject(Subject subject) {
-//        subjects.add(subject);
-//    }
-
-    public Set<Subject> getSubjects() {
-        return subjects;
-    }
-
-
-
-
-    public Student(long id, String firstName, String lastname, String email) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastname = lastname;
-        this.email = email;
-    }
-
-    public Student() {
-
-    }
+    //<editor-fold desc="Getters and setter">
 
     public Long getId() {
         return id;
@@ -92,4 +65,11 @@ public class Student {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    public Set<Subject> getSubjects() {
+        return subjects;
+    }
+
+    //</editor-fold>
+
 }

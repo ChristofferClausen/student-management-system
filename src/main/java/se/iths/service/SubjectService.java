@@ -15,8 +15,6 @@ public class SubjectService {
     @PersistenceContext
     EntityManager entityManager;
 
-
-
     public Subject setTeacher(Long id, Teacher teacher) {
         var subject = entityManager.find(Subject.class, id);
         subject.setTeacher(teacher);
@@ -33,9 +31,6 @@ public class SubjectService {
         return subject;
     }
 
-
-
-    //<editor-fold desc="CRUD">
     public Subject create(Subject subject) {
         entityManager.persist(subject);
         return subject;
@@ -46,6 +41,7 @@ public class SubjectService {
     }
 
     public List<Subject> getAll() {
+        entityManager.flush();
         return entityManager.createQuery("SELECT s from Subject s", Subject.class).getResultList();
     }
 
@@ -59,6 +55,5 @@ public class SubjectService {
         entityManager.flush();
         return subject;
     }
-    //</editor-fold>
 
 }

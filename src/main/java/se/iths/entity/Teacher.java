@@ -14,14 +14,10 @@ public class Teacher {
     @NotEmpty
     String name;
 
-
-
-
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.PERSIST) //TODO Change cascade type
     private Set<Subject> subjects = new HashSet<Subject>();
 
-
-
+    //<editor-fold desc="Getters and setters">
 
     public Long getId() {
         return id;
@@ -43,7 +39,6 @@ public class Teacher {
         return subjects;
     }
 
-//    public void addSubject(Subject subject) {
-//        this.subjects.add(subject);
-//    }
+    //</editor-fold>
+
 }

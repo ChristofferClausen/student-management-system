@@ -19,23 +19,17 @@ public class SubjectRest {
     @Inject
     SubjectService subjectService;
 
-
-
     @POST
     @Path("{subjectId}/add/teacher")
     public Response setTeacher(@PathParam("subjectId")Long subjectId, Teacher teacher) {
         return Response.ok(subjectService.setTeacher(subjectId,teacher)).build();
     }
 
-
     @POST
     @Path("{subjectId}/add/student")
     public Response addStudent(@PathParam("subjectId")Long subjectId, Student student) {
         return Response.ok(subjectService.addStudent(subjectId,student)).build();
     }
-
-
-
 
     @POST
     @Path("new")
@@ -90,6 +84,5 @@ public class SubjectRest {
             throw new NotFoundException(); //TODO Replace with more relevant exception
         }
     }
-
 
 }

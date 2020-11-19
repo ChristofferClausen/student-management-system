@@ -12,62 +12,36 @@ public class Subject {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
-
     @NotEmpty
     @NotNull
     String subject;
-
-
-
-
 
     @ManyToOne
     @JoinColumn(name = "teacher_id")
     Teacher teacher;
 
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
-        teacher.getSubjects().add(this);
-    }
-
-
-
-
     @ManyToMany(cascade = CascadeType.PERSIST)
     private Set<Student> students = new HashSet<>();
+
+    //<editor-fold desc="Getters and Setters">
 
     public void addStudent(Student student) {
         students.add(student);
         student.getSubjects().add(this);
     }
 
-//    @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL, orphanRemoval = true) //TODO Change cascade type
-//    private Set<Student> students = new HashSet<Student>();
-
-    //<editor-fold desc="Getters and Setters">
-//    public Set<Student> getStudents() {
-//        return students;
-//    }
-
-//    public void addStudent(Student student) {
-//        this.students.add(student);
-//    }
-
-    public Subject(String subjectName) {
-        this.subject = subjectName;
-    }
-
-    public Subject() {
-
+    public Set<Student> getStudents() {
+        return students;
     }
 
     public Teacher getTeacher() {
         return teacher;
     }
 
-//    public void setTeacher(Teacher teacher) {
-//        this.teacher = teacher;
-//    }
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+        teacher.getSubjects().add(this);
+    }
 
     public Long getId() {
         return id;
@@ -84,5 +58,6 @@ public class Subject {
     public void setSubject(String subject) {
         this.subject = subject;
     }
+
     //</editor-fold>
 }

@@ -12,14 +12,13 @@ import java.util.List;
 @Path("student")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-
 public class StudentRest {
 
     @Inject
     StudentService studentService;
 
-    @Path("new")
     @POST
+    @Path("new")
     public Response createStudent(Student student) {
         try {
             studentService.createStudent(student);
@@ -29,8 +28,8 @@ public class StudentRest {
         return Response.ok(student).build();
     }
 
-    @Path("{id}")
     @GET
+    @Path("{id}")
     public Response findStudentById(@PathParam("id") Long id) {
         Student student = studentService.findStudentById(id);
         if (student != null)
@@ -39,8 +38,8 @@ public class StudentRest {
 
     }
 
-    @Path("lastname/{lastname}")
     @GET
+    @Path("lastname/{lastname}")
     public List<Student> findStudentsByLastname(@PathParam("lastname") String lastname) {
         var students = studentService.findStudentsByLastName(lastname);
         if (students.size() > 0)
@@ -48,14 +47,14 @@ public class StudentRest {
         throw new StudentNotFoundException("Student with lastname: " + lastname + " not found");
     }
 
-    @Path("all")
     @GET
+    @Path("all")
     public List<Student> getAllStudents() {
         return studentService.getAllStudents();
     }
 
-    @Path("update")
     @PUT
+    @Path("update")
     public Response updateAllFieldsInStudent(Student student) {
         Student oldStudent;
         try {
@@ -71,12 +70,12 @@ public class StudentRest {
         }
     }
 
-    @Path("update")
     @PATCH
+    @Path("update")
     public Response updateSpecificFieldsInStudent(Student student) {
         Student oldStudent;
         try {
-            oldStudent = studentService.findStudentById( student.getId());
+            oldStudent = studentService.findStudentById(student.getId());
             if (oldStudent != null) {
                 var updatedStudent = studentService.updateFieldsInStudent(student);
                 return Response.ok(updatedStudent).build();
@@ -88,9 +87,9 @@ public class StudentRest {
         }
     }
 
+    @DELETE
     @Path("{id}")
     @Produces(MediaType.TEXT_PLAIN)
-    @DELETE
     public Response removeStudent(@PathParam("id") Long id) {
         Student student = studentService.findStudentById(id);
         if (student != null) {
