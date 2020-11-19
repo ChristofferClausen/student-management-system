@@ -3,6 +3,8 @@ package se.iths.entity;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Student {
@@ -20,14 +22,22 @@ public class Student {
     @NotEmpty(message = "email must not be empty")
     private String email;
     private String phoneNumber;
-
-
-
-
 //    @ManyToOne
 //    @JoinColumn(name = "subject_student")
 //    Subject subject;
 
+
+
+    @ManyToMany(mappedBy = "students", cascade = CascadeType.PERSIST)
+    private Set<Subject> subjects = new HashSet<>();
+
+//    public void addSubject(Subject subject) {
+//        subjects.add(subject);
+//    }
+
+    public Set<Subject> getSubjects() {
+        return subjects;
+    }
 
 
 

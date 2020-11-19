@@ -17,10 +17,17 @@ public class SubjectService {
 
 
 
-    public Subject addTeacher(Long subejctId, Teacher teacher) {
-        var subject = entityManager.find(Subject.class, subejctId);
-//        var teacher = entityManager.find(Teacher.class, subejctId);
+    public Subject setTeacher(Long id, Teacher teacher) {
+        var subject = entityManager.find(Subject.class, id);
         subject.setTeacher(teacher);
+        entityManager.merge(subject);
+        entityManager.flush();
+        return subject;
+    }
+
+    public Object addStudent(Long id, Student student) {
+        var subject = entityManager.find(Subject.class, id);
+        subject.addStudent(student);
         entityManager.merge(subject);
         entityManager.flush();
         return subject;

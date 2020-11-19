@@ -3,6 +3,8 @@ package se.iths.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Subject {
@@ -23,13 +25,20 @@ public class Subject {
     @JoinColumn(name = "teacher_id")
     Teacher teacher;
 
-
-
-
-
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
-        teacher.addSubject(this);
+        teacher.getSubjects().add(this);
+    }
+
+
+
+
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    private Set<Student> students = new HashSet<>();
+
+    public void addStudent(Student student) {
+        students.add(student);
+        student.getSubjects().add(this);
     }
 
 //    @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL, orphanRemoval = true) //TODO Change cascade type

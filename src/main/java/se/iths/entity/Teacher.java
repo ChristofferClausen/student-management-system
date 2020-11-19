@@ -43,7 +43,7 @@ public class Teacher {
         return subjects;
     }
 
-    public void addSubject(Subject subject) {
-        this.subjects.add(subject);
-    }
+//    public void addSubject(Subject subject) {
+//        this.subjects.add(subject);
+//    }
 }

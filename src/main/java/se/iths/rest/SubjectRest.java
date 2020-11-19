@@ -1,5 +1,6 @@
 package se.iths.rest;
 
+import se.iths.entity.Student;
 import se.iths.entity.Subject;
 import se.iths.entity.Teacher;
 import se.iths.service.SubjectService;
@@ -23,8 +24,14 @@ public class SubjectRest {
     @POST
     @Path("{subjectId}/add/teacher")
     public Response setTeacher(@PathParam("subjectId")Long subjectId, Teacher teacher) {
-//        subjectService.addTeacher(subjectId,teacher);
-        return Response.ok(subjectService.addTeacher(subjectId,teacher)).build();
+        return Response.ok(subjectService.setTeacher(subjectId,teacher)).build();
+    }
+
+
+    @POST
+    @Path("{subjectId}/add/student")
+    public Response addStudent(@PathParam("subjectId")Long subjectId, Student student) {
+        return Response.ok(subjectService.addStudent(subjectId,student)).build();
     }
 
 
