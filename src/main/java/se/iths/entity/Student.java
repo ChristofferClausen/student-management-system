@@ -22,16 +22,12 @@ public class Student {
     private String phoneNumber;
 
     @ManyToMany(mappedBy = "students", cascade = CascadeType.PERSIST)
-    private Set<Subject> subjects = new HashSet<>();
+    private final Set<Subject> subjects = new HashSet<>();
 
     //<editor-fold desc="Getters and setter">
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getFirstName() {
