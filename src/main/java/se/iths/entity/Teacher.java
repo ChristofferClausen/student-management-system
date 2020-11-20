@@ -17,6 +17,12 @@ public class Teacher {
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.PERSIST) //TODO Change cascade type
     private Set<Subject> subjects = new HashSet<Subject>();
 
+    public Teacher(String name) {
+        this.name = name;
+    }
+
+    public Teacher() {}
+
     //<editor-fold desc="Getters and setters">
 
     public Long getId() {

@@ -1,8 +1,10 @@
 package se.iths.service;
 
 import se.iths.entity.Student;
+import se.iths.entity.Subject;
 
 import java.util.List;
+import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -13,6 +15,23 @@ public class StudentService {
 
     @PersistenceContext
     EntityManager entityManager;
+
+    public Set<Student> getStudentsByTeacher(String teacherName){
+        var subject = (Subject) entityManager
+                .createQuery("SELECT DISTINCT s FROM Subject s INNER JOIN s.teacher t INNER JOIN s.students st WHERE t.name = :teacherName")
+                .setParameter("teacherName", teacherName).getSingleResult();
+        return subject.getStudents();
+    }
+
+    public Set<Student> getStudentsByTeacherAndClass(String teacherName, String subjectName) {
+        Subject subject = (Subject) entityManager
+                .createQuery("SELECT DISTINCT s FROM Subject s INNER JOIN s.teacher t INNER JOIN s.students st WHERE t.name = :teacherName AND s.subject = :subjectName")
+                .setParameter("teacherName", teacherName)
+                .setParameter("subjectName", subjectName)
+                .getSingleResult();
+
+        return subject.getStudents();
+    }
 
     public Student createStudent(Student student) {
         entityManager.persist(student);

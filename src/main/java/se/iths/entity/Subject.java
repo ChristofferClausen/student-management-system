@@ -16,12 +16,20 @@ public class Subject {
     @NotNull
     String subject;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "teacher_id")
     Teacher teacher;
 
     @ManyToMany(cascade = CascadeType.PERSIST)
     private Set<Student> students = new HashSet<>();
+
+    public Subject(String subject) {
+        this.subject = subject;
+    }
+
+    public Subject() {
+
+    }
 
     //<editor-fold desc="Getters and Setters">
 

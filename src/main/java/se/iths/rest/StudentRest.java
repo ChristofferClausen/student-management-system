@@ -2,12 +2,14 @@ package se.iths.rest;
 
 import se.iths.entity.Student;
 import se.iths.service.StudentService;
+import se.iths.service.TeacherService;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
+import java.util.Set;
 
 @Path("student")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -16,6 +18,12 @@ public class StudentRest {
 
     @Inject
     StudentService studentService;
+
+    @GET
+    @Path("getby/teacher/{teacherName}")
+    public Set<Student> getStudentByTeacherName(@PathParam("teacherName") String teacherName) {
+        return studentService.getStudentsByTeacher(teacherName);
+    }
 
     @POST
     @Path("new")

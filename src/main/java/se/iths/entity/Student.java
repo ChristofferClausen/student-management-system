@@ -24,6 +24,15 @@ public class Student {
     @ManyToMany(mappedBy = "students", cascade = CascadeType.PERSIST)
     private final Set<Subject> subjects = new HashSet<>();
 
+    public Student(String firstName, String lastname, String email, String phoneNumber) {
+        this.firstName = firstName;
+        this.lastname = lastname;
+        this.email = email;
+        this. phoneNumber = phoneNumber;
+    }
+
+    public Student() {}
+
     //<editor-fold desc="Getters and setter">
 
     public Long getId() {
