@@ -34,7 +34,6 @@ public class SubjectService {
     public Object addStudent(Long id, Student student) {
         var subject = entityManager.find(Subject.class, id);
         subject.addStudent(student);
-        entityManager.merge(student);
         entityManager.merge(subject);
         entityManager.flush();
         return subject;
