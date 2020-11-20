@@ -30,17 +30,27 @@ public class Subject {
         student.getSubjects().add(this);
     }
 
+    public void removeStudent(Student student) {
+        this.teacher = null;
+        student.getSubjects().remove(this);
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+        teacher.getSubjects().add(this);
+    }
+
+    public void removeTeacher(Teacher teacher) {
+        this.teacher = null;
+        teacher.getSubjects().remove(this);
+    }
+
     public Set<Student> getStudents() {
         return students;
     }
 
     public Teacher getTeacher() {
         return teacher;
-    }
-
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
-        teacher.getSubjects().add(this);
     }
 
     public Long getId() {
