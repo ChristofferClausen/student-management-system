@@ -23,12 +23,28 @@ public class SubjectService {
         return subject;
     }
 
+    public void removeTeacher(Long id, Teacher teacher) {
+        var subject = entityManager.find(Subject.class, id);
+        subject.removeTeacher(teacher);
+        entityManager.merge(teacher);
+        entityManager.merge(subject);
+        entityManager.flush();
+    }
+
     public Object addStudent(Long id, Student student) {
         var subject = entityManager.find(Subject.class, id);
         subject.addStudent(student);
+        entityManager.merge(student);
         entityManager.merge(subject);
         entityManager.flush();
         return subject;
+    }
+
+    public void removeStudent(Long id, Student student) {
+        var subject = entityManager.find(Subject.class, id);
+        subject.removeStudent(student);
+        entityManager.merge(subject);
+        entityManager.flush();
     }
 
     public Subject create(Subject subject) {
