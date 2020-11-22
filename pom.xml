@@ -19,9 +19,15 @@
             <type>pom</type>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.200</version>
+            <scope>runtime</scope>
+        </dependency>
     </dependencies>
     <build>
-        <finalName>se.iths</finalName>
+        <finalName>student-management</finalName>
     </build>
     <properties>
         <maven.compiler.source>11</maven.compiler.source>

@@ -1,26 +1,49 @@
 package se.iths.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 
-@Entity
+@Entity(name = "Student")
 public class Student {
 
 
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    private Set<Subject> subjects = new HashSet<>();
+
+    public void addSubject(Subject subject) {
+        subjects.add(subject);
+        subject.getStudents().add(this);
+    }
+
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotEmpty(message = "first name must not be empty")
+    @NotEmpty
+    @NotNull
     private String firstName;
-    @NotEmpty(message = "last name must not be empty")
+    @NotEmpty
+    @NotNull
     private String lastname;
-    @Email(message = "invalid email address")
-    @NotEmpty(message = "email must not be empty")
+    @Email
+    @NotEmpty
+    @NotNull
     private String email;
 
     private String phoneNumber;
+
+    public Student(@NotEmpty @NotNull String firstName, @NotEmpty @NotNull String lastname, @NotEmpty @NotNull String email) {
+        this.firstName = firstName;
+        this.lastname = lastname;
+        this.email = email;
+    }
+
+    public Student() {
+    }
 
     public Long getId() {
         return id;
@@ -61,4 +84,5 @@ public class Student {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
 }

@@ -8,6 +8,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
+import java.util.Set;
 
 @Path("student")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -99,6 +100,18 @@ public class StudentRest {
         } else {
             throw new StudentNotFoundException("Student with ID " + id + " not found");
         }
+    }
+
+    @GET
+    @Path("get/{subjectName}/{teacherName}")
+    public Set<Student> getStudentsBySubjectAndTeacher(@PathParam("subjectName") String subject, @PathParam("teacherName") String teacher) {
+        return studentService.getStudentsForSubject(teacher, subject);
+    }
+
+    @GET
+    @Path("get/{subjectName}")
+    public Set<Student> getStudentsBySubject(@PathParam("subjectName") String subject) {
+        return studentService.getStudentsForSubject(subject);
     }
 
 }
