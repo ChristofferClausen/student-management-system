@@ -32,10 +32,10 @@ public class SubjectRest {
         return subjectService.getStudentsForSubject(subject);
     }
 
-    @Path("{id}/add/student")
+    @Path("{subjectId}/add/student/{studentId}")
     @POST
-    public Subject addStudent(@PathParam("id") Long id, Student student) {
-        return subjectService.addStudent(id, student);
+    public Subject addStudent(@PathParam("subjectId") Long subjectId, @PathParam("studentId") Long studentId) {
+        return subjectService.addStudent(subjectId, studentId);
     }
 
     @Path("{subjectId}/add/teacher/{teacherId}")
