@@ -12,9 +12,9 @@ public class Teacher {
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.PERSIST)
     private Set<Subject> subjects = new HashSet<>();
 
-    public void addSubject(Subject subject, Teacher teacher) {
+    public void addSubject(Subject subject) {
         subjects.add(subject);
-        subject.setTeacher(teacher);
+        subject.setTeacher(this);
     }
 
     public void removeSubject(Subject subject) {
