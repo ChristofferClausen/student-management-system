@@ -85,7 +85,7 @@ json:
 
 json:
 {
-	"name":"Maths"
+	"subject":"Maths"
 }
 ```
 #### Get all
